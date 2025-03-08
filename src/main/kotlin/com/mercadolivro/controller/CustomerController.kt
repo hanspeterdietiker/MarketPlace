@@ -5,7 +5,9 @@ import com.mercadolivro.controller.request.PutCustomerRequest
 import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.services.CustomerService
 import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.UUID
 
 
 @RestController
@@ -14,30 +16,37 @@ class MercadolivroController(
     val customerService: CustomerService
 ) {
 
-    @GetMapping("/")
-    fun getAllCustomer(@RequestParam name:String?) {
-
-    }
-
     @GetMapping("/{id}")
-    fun getByIdCustomer(@PathVariable id: Long) {
-
+    @ResponseStatus(HttpStatus.OK)
+    fun getByIdCustomer(@PathVariable id: UUID):ResponseEntity<CustomerModel> {
+       val customerById = customerService.getById(id)
+        return ResponseEntity.ok(customerById)
     }
 
     @PostMapping("/sign")
     @ResponseStatus(HttpStatus.CREATED)
-    fun createCustomer(@RequestBody customer: PostCustomerRequest) {
+    fun postCustomer(@RequestBody customer: PostCustomerRequest) {
+        customerService.createCustomer(
+            customer = CustomerModel(
+                name = customer.name,
+                email = customer.email,
+                password = customer.password
+            )
+
+        )
 
     }
+
 
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun updateCustomer(@PathVariable id: Long, @RequestBody customer: PutCustomerRequest) {
+    fun putCustomer(@PathVariable id: UUID, @RequestBody customer: PutCustomerRequest) {
 
     }
-    @DeleteMapping("/delete/{id}")
+
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun deleteById(@PathVariable id: Long) {
+    fun deleteById(@PathVariable id: UUID) {
 
     }
 }

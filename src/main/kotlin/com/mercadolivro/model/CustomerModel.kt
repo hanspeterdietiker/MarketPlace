@@ -1,19 +1,26 @@
 package com.mercadolivro.model
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
+import java.util.UUID
 
 
 @Entity
 data class CustomerModel(
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long,
+    @GeneratedValue(generator = "UUID")
+    @Column(nullable = false)
+    var id: UUID? = null,
 
+    @Column(nullable = false)
     var name: String,
+
+    @Column(nullable = false)
     var password: String,
+
+    @Column(nullable = false)
     var email: String
 
-    )
+){
+
+    constructor() : this(UUID.randomUUID(), "", "", "")
+}
