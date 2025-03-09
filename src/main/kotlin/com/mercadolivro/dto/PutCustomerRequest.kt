@@ -1,4 +1,4 @@
-package com.mercadolivro.controller.request
+package com.mercadolivro.dto
 
 data class PutCustomerRequest (
     var email: String,

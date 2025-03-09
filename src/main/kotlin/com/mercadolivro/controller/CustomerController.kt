@@ -1,7 +1,7 @@
 package com.mercadolivro.controller
 
-import com.mercadolivro.controller.request.PostCustomerRequest
-import com.mercadolivro.controller.request.PutCustomerRequest
+import com.mercadolivro.dto.PostCustomerRequest
+import com.mercadolivro.dto.PutCustomerRequest
 import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.services.CustomerService
 import org.springframework.http.HttpStatus
@@ -39,9 +39,12 @@ class MercadolivroController(
 
 
     @PutMapping("/update/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     fun putCustomer(@PathVariable id: UUID, @RequestBody customer: PutCustomerRequest) {
-
+        customerService.updateCustomer(
+            id = id,
+            updateCustomer = customer
+        )
     }
 
     @DeleteMapping("/{id}")
