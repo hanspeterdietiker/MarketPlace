@@ -1,10 +1,10 @@
-package com.mercadolivro
+package com.marketcar
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class MercadolivroApplicationTests {
+class MarketCarApplicationTests {
 
 	@Test
 	fun contextLoads() {

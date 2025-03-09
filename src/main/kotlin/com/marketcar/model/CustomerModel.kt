@@ -1,4 +1,4 @@
-package com.mercadolivro.model
+package com.marketcar.model
 
 import jakarta.persistence.*
 import java.util.UUID

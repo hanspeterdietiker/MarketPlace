@@ -1,6 +1,6 @@
-package com.mercadolivro.repositories
+package com.marketcar.repositories
 
-import com.mercadolivro.model.CustomerModel
+import com.marketcar.model.CustomerModel
 import org.springframework.data.repository.CrudRepository
 import java.util.UUID
 

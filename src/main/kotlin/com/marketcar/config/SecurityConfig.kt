@@ -1,4 +1,4 @@
-package com.mercadolivro.config
+package com.marketcar.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

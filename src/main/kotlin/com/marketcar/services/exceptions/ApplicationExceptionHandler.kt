@@ -1,4 +1,4 @@
-package com.mercadolivro.services.exceptions
+package com.marketcar.services.exceptions
 
 
 import jakarta.persistence.EntityNotFoundException

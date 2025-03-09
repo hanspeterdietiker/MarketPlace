@@ -1,9 +1,9 @@
-package com.mercadolivro.services
+package com.marketcar.services
 
 
-import com.mercadolivro.dto.PutCustomerRequest
-import com.mercadolivro.model.CustomerModel
-import com.mercadolivro.repositories.CustomerRepository
+import com.marketcar.dto.PutCustomerRequest
+import com.marketcar.model.CustomerModel
+import com.marketcar.repositories.CustomerRepository
 import jakarta.persistence.EntityNotFoundException
 import jakarta.persistence.PersistenceException
 import jakarta.transaction.Transactional

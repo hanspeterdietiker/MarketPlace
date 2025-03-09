@@ -1,10 +1,10 @@
 spring:
   application:
-    name: MercadoLivro
+    name: MarketCar
   main:
     web-application-name: 1.0.0
   datasource:
-    url: jdbc:sqlite:mercadolivro.db
+    url: jdbc:sqlite:marketcar.db
     driver-class-name: org.sqlite.JDBC
   jpa:
     database-platform: org.hibernate.community.dialect.SQLiteDialect

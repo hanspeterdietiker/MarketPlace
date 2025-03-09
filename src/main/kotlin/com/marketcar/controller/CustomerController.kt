@@ -1,9 +1,9 @@
-package com.mercadolivro.controller
+package com.marketcar.controller
 
-import com.mercadolivro.dto.PostCustomerRequest
-import com.mercadolivro.dto.PutCustomerRequest
-import com.mercadolivro.model.CustomerModel
-import com.mercadolivro.services.CustomerService
+import com.marketcar.dto.PostCustomerRequest
+import com.marketcar.dto.PutCustomerRequest
+import com.marketcar.model.CustomerModel
+import com.marketcar.services.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

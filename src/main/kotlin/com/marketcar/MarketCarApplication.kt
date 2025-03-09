@@ -1,11 +1,11 @@
-package com.mercadolivro
+package com.marketcar
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class MercadolivroApplication
+class MarketCarApplication
 
 fun main(args: Array<String>) {
-	runApplication<MercadolivroApplication>(*args)
+	runApplication<MarketCarApplication>(*args)
 }
