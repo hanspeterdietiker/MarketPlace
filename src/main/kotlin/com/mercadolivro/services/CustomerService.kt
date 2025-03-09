@@ -15,7 +15,7 @@ import java.util.*
 @Service
 class CustomerService(
     val customerRepository: CustomerRepository,
-    private val passwordEncoder: PasswordEncoder
+    val passwordEncoder: PasswordEncoder
 ) {
 
 

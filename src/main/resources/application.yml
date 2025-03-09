@@ -1,4 +1,8 @@
 spring:
+  application:
+    name: MercadoLivro
+  main:
+    web-application-name: 1.0.0
   datasource:
     url: jdbc:sqlite:mercadolivro.db
     driver-class-name: org.sqlite.JDBC
