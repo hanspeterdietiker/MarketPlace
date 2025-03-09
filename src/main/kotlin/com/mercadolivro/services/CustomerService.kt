@@ -27,24 +27,22 @@ class CustomerService(
     }
 
 
-    fun getById(id: UUID): CustomerModel? {
-        val findById = customerRepository.findById(id).orElseThrow {
+    fun getById(id: UUID): CustomerModel {
+        return customerRepository.findById(id).orElseThrow {
             EntityNotFoundException("ERROR: Error getting customer with ID $id not found")
         }
-        return findById
     }
 
-    fun updateCustomer(@PathVariable id: UUID, updateCustomer: PutCustomerRequest): CustomerModel {
-        val existingCustomer = customerRepository.findById(id).orElseThrow {
-            EntityNotFoundException("ERROR: Error getting customer with ID $id not found ")
-        }
+    @Transactional
+    fun updateCustomer(id: UUID, updateCustomer: PutCustomerRequest): CustomerModel {
+        val existingCustomer = getById(id)
         existingCustomer.email = updateCustomer.email
         existingCustomer.password = updateCustomer.password
 
         return customerRepository.save(existingCustomer)
     }
 
-
+    @Transactional
     fun deleteById(id: UUID) {
         val deleteCustomer = customerRepository.findById(id).orElseThrow {
             EntityNotFoundException("ERROR: Customer with ID $id to delete not found")
