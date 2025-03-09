@@ -1,7 +1,7 @@
 package com.marketcar.controller
 
-import com.marketcar.dto.PostCustomerRequest
-import com.marketcar.dto.PutCustomerRequest
+import com.marketcar.dto.customer.PostCustomerRequest
+import com.marketcar.dto.customer.PutCustomerRequest
 import com.marketcar.model.CustomerModel
 import com.marketcar.services.CustomerService
 import org.springframework.http.HttpStatus

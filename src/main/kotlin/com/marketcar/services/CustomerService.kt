@@ -1,7 +1,7 @@
 package com.marketcar.services
 
 
-import com.marketcar.dto.PutCustomerRequest
+import com.marketcar.dto.customer.PutCustomerRequest
 import com.marketcar.model.CustomerModel
 import com.marketcar.repositories.CustomerRepository
 import jakarta.persistence.EntityNotFoundException
