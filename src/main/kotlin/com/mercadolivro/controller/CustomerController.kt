@@ -18,8 +18,8 @@ class MercadolivroController(
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    fun getByIdCustomer(@PathVariable id: UUID):ResponseEntity<CustomerModel> {
-       val customerById = customerService.getById(id)
+    fun getByIdCustomer(@PathVariable id: UUID): ResponseEntity<CustomerModel> {
+        val customerById = customerService.getById(id)
         return ResponseEntity.ok(customerById)
     }
 
@@ -47,6 +47,7 @@ class MercadolivroController(
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun deleteById(@PathVariable id: UUID) {
+        customerService.deleteById(id)
 
     }
 }
