@@ -24,6 +24,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.xerial:sqlite-jdbc:3.43.2.1")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.hibernate.orm:hibernate-community-dialects:6.4.0.Final")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

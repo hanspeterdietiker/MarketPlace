@@ -7,19 +7,22 @@ import com.mercadolivro.repositories.CustomerRepository
 import jakarta.persistence.EntityNotFoundException
 import jakarta.persistence.PersistenceException
 import jakarta.transaction.Transactional
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
+
 import java.util.*
 
 @Service
 class CustomerService(
-    val customerRepository: CustomerRepository
+    val customerRepository: CustomerRepository,
+    private val passwordEncoder: PasswordEncoder
 ) {
 
 
     @Transactional
     fun createCustomer(customer: CustomerModel): CustomerModel {
         return try {
+            customer.password = passwordEncoder.encode(customer.password)
             customerRepository.save(customer)
         } catch (e: PersistenceException) {
             throw PersistenceException("ERROR: Error registering Customer in the database \n ${e.message}", e)
@@ -37,7 +40,7 @@ class CustomerService(
     fun updateCustomer(id: UUID, updateCustomer: PutCustomerRequest): CustomerModel {
         val existingCustomer = getById(id)
         existingCustomer.email = updateCustomer.email
-        existingCustomer.password = updateCustomer.password
+        existingCustomer.password = passwordEncoder.encode(updateCustomer.password)
 
         return customerRepository.save(existingCustomer)
     }
