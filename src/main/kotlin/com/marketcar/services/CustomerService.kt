@@ -38,11 +38,16 @@ class CustomerService(
 
     @Transactional
     fun updateCustomer(id: UUID, updateCustomer: PutCustomerRequest): CustomerModel {
-        val existingCustomer = getById(id)
-        existingCustomer.email = updateCustomer.email
-        existingCustomer.password = passwordEncoder.encode(updateCustomer.password)
+        return try {
+            val existingCustomer = getById(id)
+            existingCustomer.email = updateCustomer.email
+            existingCustomer.password = passwordEncoder.encode(updateCustomer.password)
 
-        return customerRepository.save(existingCustomer)
+            customerRepository.save(existingCustomer)
+        } catch (e: PersistenceException) {
+            throw PersistenceException("ERROR: Error updating customer with ID $id not found")
+        }
+
     }
 
     @Transactional

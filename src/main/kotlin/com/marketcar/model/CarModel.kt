@@ -23,7 +23,7 @@ data class CarModel(
     var status: CarStatus? = null,
 
     @JoinColumn(name = "customer_id")
-    @ManyToOne(cascade = [(CascadeType.MERGE)])
+    @ManyToOne
     var customer: CustomerModel? = null,
 ) {
 
