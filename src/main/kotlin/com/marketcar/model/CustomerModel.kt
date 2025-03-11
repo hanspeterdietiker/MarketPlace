@@ -20,12 +20,8 @@ data class CustomerModel(
     @Column(nullable = false)
     var email: String,
 
-    @OneToMany(mappedBy = "customer_cars", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    @Column(nullable = false)
-    var cars: MutableList<CarModel>?
-
 
 ) {
-    constructor(name: String, email: String, password: String) : this(UUID.randomUUID(), "", "", "", mutableListOf())
+    constructor() : this(UUID.randomUUID(), "", "", "")
 }
 
