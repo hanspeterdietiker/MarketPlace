@@ -55,5 +55,10 @@ class CarController(
             )
 
     }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteSaleCar(@PathVariable id: UUID) {
+        carService.deleteSaleCar(id)
+    }
 
 }

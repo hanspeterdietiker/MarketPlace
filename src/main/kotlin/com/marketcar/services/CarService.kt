@@ -45,4 +45,12 @@ class CarService(
             throw PersistenceException("ERROR: Error updating car sale in the database \n ${e.message}", e)
         }
     }
+
+    @Transactional
+    fun deleteSaleCar(id: UUID) {
+        val deleteCarSale = carRepository.findById(id).orElseThrow{
+            EntityNotFoundException("ERROR: Error deleting car sale with ID $id not found")
+        }
+        return carRepository.delete(deleteCarSale)
+    }
 }
