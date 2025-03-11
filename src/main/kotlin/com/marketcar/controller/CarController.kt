@@ -1,6 +1,7 @@
 package com.marketcar.controller
 
 import com.marketcar.dto.car.PostCarRequest
+import com.marketcar.dto.car.PutCarRequest
 import com.marketcar.model.CarModel
 import com.marketcar.services.CarService
 import com.marketcar.services.CustomerService
@@ -16,6 +17,12 @@ class CarController(
     val carService: CarService,
     val customerService: CustomerService,
 ) {
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun getCars(): List<CarModel> {
+        return carService.getSaleCars()
+    }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -36,6 +43,16 @@ class CarController(
                 customer = customer,
             )
         )
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    fun updateSaleCar(@PathVariable id: UUID, @RequestBody request: PutCarRequest) {
+        carService.updateSaleCar(
+            id = id,
+            updateCarSale = request,
+
+            )
 
     }
 

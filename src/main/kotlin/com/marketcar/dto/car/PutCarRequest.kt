@@ -6,5 +6,6 @@ import java.math.BigDecimal
 data class PutCarRequest(
     val price: BigDecimal,
     val name: String,
-    val carStatus: CarStatus,
+    val status: CarStatus,
+
 )

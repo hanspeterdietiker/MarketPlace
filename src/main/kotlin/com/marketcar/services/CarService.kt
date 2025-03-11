@@ -22,6 +22,10 @@ class CarService(
         }
     }
 
+    fun getSaleCars(): List<CarModel> {
+        return carRepository.findAll()
+    }
+
     fun getByIdCar(id: UUID): CarModel? {
         return carRepository.findById(id).orElseThrow {
             EntityNotFoundException("ERROR: Error getting Car sale with ID $id not found")
@@ -34,7 +38,7 @@ class CarService(
             val existingSaleCar = getByIdCar(id)
             existingSaleCar!!.price = updateCarSale.price
             existingSaleCar.name = updateCarSale.name
-            existingSaleCar.status = updateCarSale.carStatus
+            existingSaleCar.status = updateCarSale.status
 
             carRepository.save(existingSaleCar)
         } catch (e: PersistenceException) {
