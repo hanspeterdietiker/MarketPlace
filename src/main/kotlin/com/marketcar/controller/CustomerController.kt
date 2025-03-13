@@ -1,9 +1,11 @@
 package com.marketcar.controller
 
+
 import com.marketcar.dto.customer.PostCustomerRequest
 import com.marketcar.dto.customer.PutCustomerRequest
 import com.marketcar.model.CustomerModel
 import com.marketcar.services.CustomerService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -13,7 +15,7 @@ import java.util.UUID
 @RestController
 @RequestMapping("api/v1/customers")
 class CustomerController(
-    val customerService: CustomerService
+    val customerService: CustomerService,
 ) {
 
     @GetMapping("/{id}")
@@ -25,8 +27,8 @@ class CustomerController(
 
     @PostMapping("/sign")
     @ResponseStatus(HttpStatus.CREATED)
-    fun postCustomer(@RequestBody customer: PostCustomerRequest) {
-        customerService.createCustomer(
+    fun signCustomer(@RequestBody @Valid customer: PostCustomerRequest) {
+        customerService.signCustomer(
             customer = CustomerModel(
                 name = customer.name,
                 email = customer.email,
@@ -38,7 +40,7 @@ class CustomerController(
     }
 
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}/profile")
     @ResponseStatus(HttpStatus.OK)
     fun putCustomer(@PathVariable id: UUID, @RequestBody customer: PutCustomerRequest) {
         customerService.updateCustomer(

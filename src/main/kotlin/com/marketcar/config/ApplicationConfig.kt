@@ -13,7 +13,7 @@ class ApplicationConfig {
     @Bean
     fun customOpenApi(
         @Value("\${spring.application.name}") appName: String?,
-        @Value("\${spring.main.web-application-name}") appVersion: String?
+        @Value("\${spring.main.web-application-name}") appVersion: String?,
     ): OpenAPI {
         val contact = Contact()
         contact.email = "contactdevhanspeter@gmail.com"

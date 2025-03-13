@@ -7,6 +7,7 @@ import com.marketcar.repositories.CustomerRepository
 import jakarta.persistence.EntityNotFoundException
 import jakarta.persistence.PersistenceException
 import jakarta.transaction.Transactional
+import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
@@ -15,12 +16,13 @@ import java.util.*
 @Service
 class CustomerService(
     val customerRepository: CustomerRepository,
-    val passwordEncoder: PasswordEncoder
+    val passwordEncoder: PasswordEncoder,
+    val authenticationManager: AuthenticationManager,
 ) {
 
 
     @Transactional
-    fun createCustomer(customer: CustomerModel): CustomerModel {
+    fun signCustomer(customer: CustomerModel): CustomerModel {
         return try {
             customer.password = passwordEncoder.encode(customer.password)
             customerRepository.save(customer)
@@ -28,6 +30,7 @@ class CustomerService(
             throw PersistenceException("ERROR: Error registering Customer in the database \n ${e.message}", e)
         }
     }
+
 
 
     fun getById(id: UUID): CustomerModel {
