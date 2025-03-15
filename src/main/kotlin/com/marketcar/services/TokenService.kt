@@ -5,7 +5,6 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import org.springframework.stereotype.Service
 import io.jsonwebtoken.security.Keys
-import org.springdoc.core.service.GenericParameterService
 import org.springframework.security.core.userdetails.UserDetails
 import java.sql.Date
 

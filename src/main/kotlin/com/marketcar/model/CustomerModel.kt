@@ -11,17 +11,17 @@ data class CustomerModel(
     @Column(nullable = false)
     var id: UUID? = null,
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 50)
     var name: String,
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     var password: String,
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 100)
     var email: String,
 
 
-) {
+    ) {
     constructor() : this(UUID.randomUUID(), "", "", "")
 }
 

@@ -12,7 +12,7 @@ data class CarModel(
     @Column(nullable = false)
     var id: UUID? = null,
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     var name: String,
 
     @Column(nullable = false)
