@@ -19,7 +19,7 @@ class CustomerService(
     val passwordEncoder: PasswordEncoder,
 ) {
 
-    // Implementar auth nome iguais
+
     @Transactional
     fun signCustomer(customer: CustomerModel): CustomerModel {
         return try {
