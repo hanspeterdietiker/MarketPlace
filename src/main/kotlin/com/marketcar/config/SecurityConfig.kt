@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.ProviderManager
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
@@ -17,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 @Configuration
 @EnableConfigurationProperties(JwtProperties::class)
@@ -39,6 +41,7 @@ class SecurityConfig {
                 auth.anyRequest().authenticated()
 
             }
+            .addFilterBefore(JwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
 
             .csrf { it.disable() }
 
@@ -46,30 +49,20 @@ class SecurityConfig {
     }
 
     @Bean
-    fun authManager(userDetailsService: UserDetailsService, passwordEncoder: PasswordEncoder): AuthenticationManager {
-        val authProvider = DaoAuthenticationProvider()
-        authProvider.setUserDetailsService(userDetailsService)
-        authProvider.setPasswordEncoder(passwordEncoder)
-        return ProviderManager(authProvider)
+    fun userDetailsService(customerRepository: CustomerRepository): UserDetailsService {
+
     }
 
     @Bean
-    fun userDetailsService(customerRepository: CustomerRepository): UserDetailsService {
-        return try {
-            UserDetailsService { name ->
-                val customer = customerRepository.findByName(name)
-
-                User
-                    .withUsername(customer!!.name)
-                    .password(customer.password)
-                    .build()
-
+    fun authenticationProvider(customerRepository: CustomerRepository): DaoAuthenticationProvider =
+        DaoAuthenticationProvider()
+            .also { auth ->
+                auth.setPasswordEncoder(encoder())
+                auth.setUserDetailsService(userDetailsService)
             }
-        } catch (e: EntityNotFoundException) {
-            throw EntityNotFoundException("Customer not found : ${e.message}")
-        }
 
+    @Bean
+    fun authenticationManager(authConfig: AuthenticationConfiguration): AuthenticationManager =
+        authConfig.authenticationManager
     }
 
-
-}
