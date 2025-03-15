@@ -5,7 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.7"
 }
 
-group = "com.mercadolivro"
+group = "com.marketcar"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -29,10 +29,9 @@ dependencies {
 	implementation("org.hibernate.orm:hibernate-community-dialects:6.4.0.Final")
 	implementation ("org.hibernate.validator:hibernate-validator:8.0.1.Final")
 	implementation ("jakarta.el:jakarta.el-api:5.0.1")
-	implementation ("io.github.nefilim.kjwt:kjwt-core:1.0.0")
-	implementation("io.arrow-kt:arrow-core-jvm:2.0.1")
-	implementation("io.arrow-kt:arrow-annotations-jvm:2.0.1")
-	implementation("io.arrow-kt:arrow-atomic-jvm:2.0.1")
+	implementation("io.jsonwebtoken:jjwt-api:0.12.3")
+	implementation("io.jsonwebtoken:jjwt-impl:0.12.3")
+	implementation("io.jsonwebtoken:jjwt-jackson:0.12.3")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")

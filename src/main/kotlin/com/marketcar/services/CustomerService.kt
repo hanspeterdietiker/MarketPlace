@@ -17,10 +17,9 @@ import java.util.*
 class CustomerService(
     val customerRepository: CustomerRepository,
     val passwordEncoder: PasswordEncoder,
-    val authenticationManager: AuthenticationManager,
 ) {
 
-
+    // Implementar auth nome iguais
     @Transactional
     fun signCustomer(customer: CustomerModel): CustomerModel {
         return try {
