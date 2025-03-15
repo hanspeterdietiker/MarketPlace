@@ -6,42 +6,44 @@ import io.jsonwebtoken.Jwts
 import org.springframework.stereotype.Service
 import io.jsonwebtoken.security.Keys
 import org.springframework.security.core.userdetails.UserDetails
-import java.sql.Date
+import java.util.Date
 
 @Service
 class TokenService(
     jwtProperties: JwtProperties,
 ) {
     private val secretKey = Keys.hmacShaKeyFor(
-        jwtProperties.key.toByteArray()
+        jwtProperties.key.toByteArray(),
     )
 
     fun generate(
         userDetails: UserDetails,
         expirationDate: Date,
-        additonalClaims: Map<String, Any> = emptyMap(),
+        additionalClaims: Map<String, Any> = emptyMap(),
     ): String =
         Jwts.builder()
             .claims()
             .subject(userDetails.username)
             .issuedAt(Date(System.currentTimeMillis()))
             .expiration(expirationDate)
-            .add(additonalClaims)
+            .add(additionalClaims)
             .and()
             .signWith(secretKey)
             .compact()
 
+
     private fun getAllClaims(token: String): Claims {
+        val cleanToken = token.trim()
         val parser = Jwts.parser()
             .verifyWith(secretKey)
             .build()
 
         return parser
-            .parseSignedClaims(token)
+            .parseSignedClaims(cleanToken)
             .payload
     }
 
-    fun extractEmail(token: String): String? =
+    fun extractName(token: String): String? =
         getAllClaims(token)
             .subject
 
@@ -51,7 +53,7 @@ class TokenService(
             .before(Date(System.currentTimeMillis()))
 
     fun isValid(token: String, userDetails: UserDetails): Boolean {
-        val email = extractEmail(token)
-        return userDetails.username == email && !isExpired(token)
+        val name = extractName(token)
+        return userDetails.username == name && !isExpired(token)
     }
 }

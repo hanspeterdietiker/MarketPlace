@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.web.DefaultSecurityFilterChain
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
@@ -25,7 +26,7 @@ class SecurityConfig(
         jwtAuthenticationFilter
         : JwtAuthenticationFilter,
 
-    ): SecurityFilterChain {
+    ): DefaultSecurityFilterChain {
         http
             .sessionManagement { session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests { auth ->
@@ -37,7 +38,7 @@ class SecurityConfig(
                     "/api/v1/auth/login"
                 ).permitAll()
 
-                auth.anyRequest().authenticated()
+                auth.anyRequest().fullyAuthenticated()
 
             }
             .authenticationProvider(authenticationProvider)
