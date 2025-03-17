@@ -1,16 +1,24 @@
-## MarketCar 🚗
+# MarketCar 🚗
 
-#💻 Como Rodar o Projeto MarketPlace
+## 💻 Como Rodar o Projeto MarketPlace:
 Este projeto foi desenvolvido em Kotlin com Spring Boot e utiliza SQLite como banco de dados.
 
-✅ Pré-requisitos
+## ✅ Pré-requisitos
 Antes de rodar o projeto, certifique-se de ter instalado:
 - JDK 17+
 - Gradle
 - Git
-- SQLite 
+- SQLite
 
-#🚀 Passos para rodar o projeto
+## 📌 Funcionalidades Principais
+✔️ Cadastro e autenticação de usuários (JWT Token)
+✔️ Cadastro de carros (com status de "Venda" ou "Aluguel")
+✔️ Listagem de carros disponíveis
+✔️ Atualização de informações do carro
+✔️ Remoção de carros
+✔️ Gerenciamento de perfis dos usuários
+
+## 🚀 Passos para rodar o projeto
 
 1️⃣ Clone o repositório
 
@@ -37,14 +45,14 @@ gradlew.bat bootRun  # Windows
 http://localhost:8080
 ```
 
-⚡ Banco de Dados (SQLite)
+## ⚡ Banco de Dados (SQLite)
 O banco de dados já está incluído no projeto (marketcar.db).
 Se precisar visualizar os dados, use um cliente SQLite como:
 
 - DB Browser for SQLite
 - SQLite CLI
 
-🔐 Autenticação
+## 🔐 Autenticação
 O projeto usa Spring Security e JWT. Para acessar rotas protegidas, primeiro faça login na rota:
 
 ```TERMINAL
@@ -59,3 +67,4 @@ Exemplo de corpo da requisição:
 }
 ```
 O token retornado deverá ser usado no Authorization nas requisições protegidas.
+
