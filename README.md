@@ -14,7 +14,6 @@ Antes de rodar o projeto, certifique-se de ter instalado:
 
 1️⃣ Clone o repositório
 
-
 ```TERMINAL
 git clone https://github.com/seu-usuario/MarketPlace.git
 ```
@@ -23,7 +22,7 @@ git clone https://github.com/seu-usuario/MarketPlace.git
 
 ```TERMINAL
 cd MarketPlace
-``
+```
 3️⃣ Execute o projeto com Gradle
 
 ```TERMINAL
