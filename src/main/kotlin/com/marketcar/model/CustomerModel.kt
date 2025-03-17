@@ -1,5 +1,6 @@
 package com.marketcar.model
 
+import com.marketcar.model.enums.CustomerStatus
 import jakarta.persistence.*
 import java.util.UUID
 
@@ -20,8 +21,10 @@ data class CustomerModel(
     @Column(nullable = false, unique = true, length = 100)
     var email: String,
 
-
+    @Column
+    @Enumerated(EnumType.STRING)
+    var status: CustomerStatus,
     ) {
-    constructor() : this(UUID.randomUUID(), "", "", "")
+    constructor() : this(UUID.randomUUID(), "", "", "", CustomerStatus.ACTIVE)
 }
 

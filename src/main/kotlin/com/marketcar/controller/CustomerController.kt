@@ -4,6 +4,7 @@ package com.marketcar.controller
 import com.marketcar.dto.customer.PostCustomerRequest
 import com.marketcar.dto.customer.PutCustomerRequest
 import com.marketcar.model.CustomerModel
+import com.marketcar.model.enums.CustomerStatus
 import com.marketcar.services.CustomerService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -32,7 +33,8 @@ class CustomerController(
             customer = CustomerModel(
                 name = customer.name,
                 email = customer.email,
-                password = customer.password
+                password = customer.password,
+                status = CustomerStatus.ACTIVE
             )
 
         )

@@ -3,6 +3,8 @@ package com.marketcar.services
 
 import com.marketcar.dto.customer.PutCustomerRequest
 import com.marketcar.model.CustomerModel
+import com.marketcar.model.enums.CustomerStatus
+import com.marketcar.repositories.CarRepository
 import com.marketcar.repositories.CustomerRepository
 import jakarta.persistence.EntityNotFoundException
 import jakarta.persistence.PersistenceException
@@ -17,6 +19,7 @@ import java.util.*
 class CustomerService(
     val customerRepository: CustomerRepository,
     val passwordEncoder: PasswordEncoder,
+    val carService: CarService,
 ) {
 
 
@@ -29,7 +32,6 @@ class CustomerService(
             throw PersistenceException("ERROR: Error registering Customer in the database \n ${e.message}", e)
         }
     }
-
 
 
     fun getById(id: UUID): CustomerModel {
@@ -54,10 +56,9 @@ class CustomerService(
 
     @Transactional
     fun deleteById(id: UUID) {
-        val deleteCustomer = customerRepository.findById(id).orElseThrow {
-            EntityNotFoundException("ERROR: Customer with ID $id to delete not found")
-        }
-        return customerRepository.delete(deleteCustomer)
+        val customer = getById(id)
+        carService.deleteByCustomer(customer)
+        customer.status = CustomerStatus.INACTIVE
     }
 
 }

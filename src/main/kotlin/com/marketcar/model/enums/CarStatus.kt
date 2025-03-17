@@ -5,5 +5,6 @@ enum class CarStatus {
     Sale,
     Bought,
     Rented,
+    DELETED
 
 }

@@ -2,10 +2,13 @@ package com.marketcar.services
 
 import com.marketcar.dto.car.PutCarRequest
 import com.marketcar.model.CarModel
+import com.marketcar.model.CustomerModel
+import com.marketcar.model.enums.CarStatus
 import com.marketcar.repositories.CarRepository
 import jakarta.persistence.EntityNotFoundException
 import jakarta.persistence.PersistenceException
 import jakarta.transaction.Transactional
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -48,9 +51,17 @@ class CarService(
 
     @Transactional
     fun deleteSaleCar(id: UUID) {
-        val deleteCarSale = carRepository.findById(id).orElseThrow{
-            EntityNotFoundException("ERROR: Error deleting car sale with ID $id not found")
+        val car = getByIdCar(id)
+        car!!.status = CarStatus.DELETED
+        carRepository.save(car)
+    }
+
+    @Transactional
+    fun deleteByCustomer(customer: CustomerModel) {
+        val cars = carRepository.findByCustomer(customer)
+        for (car in cars) {
+            car.status = CarStatus.DELETED
         }
-        return carRepository.delete(deleteCarSale)
+        carRepository.saveAll(cars)
     }
 }
