@@ -5,10 +5,10 @@ Este projeto foi desenvolvido em Kotlin com Spring Boot e utiliza SQLite como ba
 
 ## ✅ Pré-requisitos
 Antes de rodar o projeto, certifique-se de ter instalado:
-- JDK 17+
-- Gradle
-- Git
-- SQLite
+JDK 17+,
+Gradle,
+Git,
+SQLite,
 
 ## 📌 Funcionalidades Principais
 ✔️ Cadastro e autenticação de usuários (JWT Token)
@@ -53,10 +53,24 @@ Se precisar visualizar os dados, use um cliente SQLite como:
 - SQLite CLI
 
 ## 🔐 Autenticação
-O projeto usa Spring Security e JWT. Para acessar rotas protegidas, primeiro faça login na rota:
+O projeto usa Spring Security e JWT. Para acessar rotas protegidas, antes de fazer login, é necessário registrar um usuário na seguinte rota:
 
 ```TERMINAL
-POST /api/v1/customers/auth/login
+POST /api/v1/customers/sign
+```
+Exemplo de corpo da requisição:
+```TERMINAL
+{
+  "name": "seu-nome",
+  "email": "seu-email@example.com",
+  "password": "sua-senha"
+}
+```
+
+Após o cadastro, faça login com a seguinte requisição:
+
+```TERMINAL
+POST /api/v1/auth/login
 ```
 Exemplo de corpo da requisição:
 
