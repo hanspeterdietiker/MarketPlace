@@ -26,21 +26,6 @@ class CustomerController(
         return ResponseEntity.ok(customerById)
     }
 
-    @PostMapping("/sign")
-    @ResponseStatus(HttpStatus.CREATED)
-    fun signCustomer(@RequestBody @Valid customer: PostCustomerRequest) {
-        customerService.signCustomer(
-            customer = CustomerModel(
-                name = customer.name,
-                email = customer.email,
-                password = customer.password,
-                status = CustomerStatus.ACTIVE
-            )
-
-        )
-
-    }
-
 
     @PutMapping("/{id}/profile")
     @ResponseStatus(HttpStatus.OK)

@@ -23,17 +23,6 @@ class CustomerService(
 ) {
 
 
-    @Transactional
-    fun signCustomer(customer: CustomerModel): CustomerModel {
-        return try {
-            customer.password = passwordEncoder.encode(customer.password)
-            customerRepository.save(customer)
-        } catch (e: PersistenceException) {
-            throw PersistenceException("ERROR: Error registering Customer in the database \n ${e.message}", e)
-        }
-    }
-
-
     fun getById(id: UUID): CustomerModel {
         return customerRepository.findById(id).orElseThrow {
             EntityNotFoundException("ERROR: Error getting customer with ID $id not found")

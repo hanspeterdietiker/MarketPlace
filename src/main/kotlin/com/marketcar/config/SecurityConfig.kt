@@ -34,7 +34,7 @@ class SecurityConfig(
                     "/error"
                 ).permitAll()
                 auth.requestMatchers(
-                    HttpMethod.POST, "/api/v1/customers/sign",
+                    HttpMethod.POST, "/api/v1/auth/signup",
                     "/api/v1/auth/login"
                 ).permitAll()
 
