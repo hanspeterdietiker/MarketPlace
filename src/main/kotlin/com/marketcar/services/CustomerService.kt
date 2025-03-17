@@ -59,6 +59,7 @@ class CustomerService(
         val customer = getById(id)
         carService.deleteByCustomer(customer)
         customer.status = CustomerStatus.INACTIVE
+        customerRepository.save(customer)
     }
 
 }
