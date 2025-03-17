@@ -56,7 +56,7 @@ Se precisar visualizar os dados, use um cliente SQLite como:
 O projeto usa Spring Security e JWT. Para acessar rotas protegidas, antes de fazer login, é necessário registrar um usuário na seguinte rota:
 
 ```TERMINAL
-POST /api/v1/customers/sign
+POST /api/v1/auth/signup
 ```
 Exemplo de corpo da requisição:
 ```TERMINAL
