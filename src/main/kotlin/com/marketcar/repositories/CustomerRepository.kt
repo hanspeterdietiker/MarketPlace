@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository
 import java.util.UUID
 
 interface CustomerRepository : CrudRepository<CustomerModel, UUID> {
-    fun findByName(email: String): CustomerModel?
+    fun findByName(name: String): CustomerModel?
 }
